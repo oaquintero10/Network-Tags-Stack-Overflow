@@ -1,4 +1,4 @@
-# Network-Tags-Stack-Overflow <img src="logo.png" height="10px"/>
+# Network-Tags-Stack-Overflow <img src="logo.png" height="30px"/>
 
 En el mundo de Stack Overflow se desarrollan variadas temáticas relacionadas con tecnologías, programación, sistemas operativos, entre muchos otros. Por facilidad de la página y del usuario final, Stack Overflow desarrolló un sistemas de Tags (etiquetas) con el objetivo de filtrar y agrupar preguntas similares más fácilmente. Ejemplo de estas etiquetas son: php, javascript, java, android, c#, html, jquery y mysql, como para citar las seis más populares.
 
