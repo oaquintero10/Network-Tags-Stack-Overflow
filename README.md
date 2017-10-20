@@ -4,7 +4,7 @@ En el mundo de Stack Overflow se desarrollan variadas temáticas relacionadas co
 
 Los datos a estudiar corresponden a todos los tags que se han escrito en la página Stack Overflow, la misma se encuentr en el link https://www.kaggle.com/stackoverflow/stack-overflow-tag-network/data. La data consiste en dos datasets, con información de los nodos (tags) y los links que existen entre ellos. 
 
-El objetivo de la presente gráfica se intenta mostrar cual es la relación que existen entre los tags para identificar tecnologías conectadas y cuales son usadas juntas.
+El objetivo de la presente gráfica es mostrar cual es la relación que existen entre los tags para identificar tecnologías conectadas y cuales son usadas juntas.
 
 <Embed src = "grafica1.html" width = "950" height = "750">
 
