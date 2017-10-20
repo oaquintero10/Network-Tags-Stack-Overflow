@@ -5,3 +5,6 @@ Los datos a estudiar corresponden a todos los tags que se han escrito en la pág
 <Embed src = "grafica1.html" width = "950" height = "750">
 
 # FORCE DIRECTED GRAPH
+
+
+  <Embed src = "grafica2.html" width = "950" height = "950">
