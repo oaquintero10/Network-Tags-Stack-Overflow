@@ -15,7 +15,7 @@
 }
 
 text {
-  font: 15px sans-serif;
+  font: 20px sans-serif;
   pointer-events: none;
 }
 
@@ -299,8 +299,8 @@ var force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(links)
     .size([width, height])
-    .linkDistance(100)
-    .charge(-300)
+    .linkDistance(120)
+    .charge(-400)
     .on("tick", tick)
     .start();
 
