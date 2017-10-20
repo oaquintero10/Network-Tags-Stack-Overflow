@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+.node circle {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+// http://blog.thomsonreuters.com/index.php/mobile-patent-suits-graphic-of-the-day/
+var links = [
+  {source: "azure",target: ".net"},
+{source: "sql-server",target: ".net"},
+{source: "asp.net",target: ".net"},
+{source: "linq",target: ".net"},
+{source: "c#",target: ".net"},
+{source: "codeigniter",target: "ajax"},
+{source: "jquery",target: "ajax"},
+{source: "mysql",target: "ajax"},
+{source: "css",target: "ajax"},
+{source: "php",target: "ajax"},
+{source: "javascript",target: "ajax"},
+{source: "json",target: "ajax"},
+{source: "azure",target: "amazon-web-services"},
+{source: "devops",target: "amazon-web-services"},
+{source: "docker",target: "amazon-web-services"},
+{source: "java",target: "android"},
+{source: "nginx",target: "apache"},
+{source: "mysql",target: "apache"},
+{source: "linux",target: "apache"},
+{source: ".net",target: "asp.net"},
+{source: "sql",target: "asp.net"},
+{source: "sql-server",target: "asp.net"},
+{source: "c#",target: "asp.net"},
+{source: "jquery",target: "asp.net"},
+{source: "mvc",target: "asp.net"},
+{source: "azure",target: "asp.net"},
+{source: "linq",target: "asp.net"},
+{source: "vb.net",target: "asp.net"},
+{source: ".net",target: "azure"},
+{source: "c#",target: "azure"},
+{source: "asp.net",target: "azure"},
+{source: "amazon-web-services",target: "azure"},
+{source: "c++",target: "c"},
+{source: "python",target: "c"},
+{source: "java",target: "c"},
+{source: "linq",target: "c#"},
+{source: "sql",target: "c#"},
+{source: "asp.net",target: "c#"},
+{source: "vb.net",target: "c#"},
+{source: ".net",target: "c#"},
+{source: "sql-server",target: "c#"},
+{source: "azure",target: "c#"},
+{source: "c",target: "c++"},
+{source: "java",target: "c++"},
+{source: "python",target: "c++"},
+{source: "mysql",target: "codeigniter"},
+{source: "jquery",target: "codeigniter"},
+{source: "laravel",target: "codeigniter"},
+{source: "php",target: "codeigniter"},
+{source: "ajax",target: "codeigniter"},
+{source: "wordpress",target: "codeigniter"},
+{source: "ajax",target: "css"},
+{source: "mysql",target: "css"},
+{source: "photoshop",target: "css"},
+{source: "jquery",target: "css"},
+{source: "html",target: "css"},
+{source: "javascript",target: "css"},
+{source: "html5",target: "css"},
+{source: "wordpress",target: "css"},
+{source: "php",target: "css"},
+{source: "amazon-web-services",target: "devops"},
+{source: "docker",target: "devops"},
+{source: "jenkins",target: "devops"},
+{source: "python",target: "django"},
+{source: "flask",target: "django"},
+{source: "postgresql",target: "django"},
+{source: "amazon-web-services",target: "docker"},
+{source: "devops",target: "docker"},
+{source: "jenkins",target: "docker"},
+{source: "reactjs",target: "express"},
+{source: "redux",target: "express"},
+{source: "node.js",target: "express"},
+{source: "mongodb",target: "express"},
+{source: "python",target: "flask"},
+{source: "django",target: "flask"},
+{source: "jenkins",target: "git"},
+{source: "linux",target: "git"},
+{source: "jsp",target: "hibernate"},
+{source: "java",target: "hibernate"},
+{source: "spring-boot",target: "hibernate"},
+{source: "maven",target: "hibernate"},
+{source: "spring-mvc",target: "hibernate"},
+{source: "java-ee",target: "hibernate"},
+{source: "spring",target: "hibernate"},
+{source: "mysql",target: "html"},
+{source: "javascript",target: "html"},
+{source: "php",target: "html"},
+{source: "css",target: "html"},
+{source: "jquery",target: "html"},
+{source: "php",target: "html5"},
+{source: "wordpress",target: "html5"},
+{source: "javascript",target: "html5"},
+{source: "jquery",target: "html5"},
+{source: "css",target: "html5"},
+{source: "spring",target: "java"},
+{source: "c++",target: "java"},
+{source: "jsp",target: "java"},
+{source: "java-ee",target: "java"},
+{source: "android",target: "java"},
+{source: "hibernate",target: "java"},
+{source: "c",target: "java"},
+{source: "spring-mvc",target: "java"},
+{source: "spring",target: "java-ee"},
+{source: "hibernate",target: "java-ee"},
+{source: "spring-mvc",target: "java-ee"},
+{source: "java",target: "java-ee"},
+{source: "jquery",target: "javascript"},
+{source: "node.js",target: "javascript"},
+{source: "mysql",target: "javascript"},
+{source: "php",target: "javascript"},
+{source: "ajax",target: "javascript"},
+{source: "reactjs",target: "javascript"},
+{source: "css",target: "javascript"},
+{source: "html",target: "javascript"},
+{source: "html5",target: "javascript"},
+{source: "git",target: "jenkins"},
+{source: "devops",target: "jenkins"},
+{source: "maven",target: "jenkins"},
+{source: "docker",target: "jenkins"},
+{source: "json",target: "jquery"},
+{source: "html",target: "jquery"},
+{source: "wordpress",target: "jquery"},
+{source: "asp.net",target: "jquery"},
+{source: "php",target: "jquery"},
+{source: "css",target: "jquery"},
+{source: "html5",target: "jquery"},
+{source: "ajax",target: "jquery"},
+{source: "mysql",target: "jquery"},
+{source: "javascript",target: "jquery"},
+{source: "codeigniter",target: "jquery"},
+{source: "jquery",target: "json"},
+{source: "xml",target: "json"},
+{source: "ajax",target: "json"},
+{source: "hibernate",target: "jsp"},
+{source: "java",target: "jsp"},
+{source: "spring-mvc",target: "jsp"},
+{source: "spring",target: "jsp"},
+{source: "php",target: "laravel"},
+{source: "mysql",target: "laravel"},
+{source: "codeigniter",target: "laravel"},
+{source: "sql-server",target: "linq"},
+{source: "c#",target: "linq"},
+{source: "asp.net",target: "linq"},
+{source: ".net",target: "linq"},
+{source: "git",target: "linux"},
+{source: "unix",target: "linux"},
+{source: "osx",target: "linux"},
+{source: "ubuntu",target: "linux"},
+{source: "shell",target: "linux"},
+{source: "nginx",target: "linux"},
+{source: "windows",target: "linux"},
+{source: "python",target: "linux"},
+{source: "apache",target: "linux"},
+{source: "spring-mvc",target: "maven"},
+{source: "jenkins",target: "maven"},
+{source: "spring",target: "maven"},
+{source: "hibernate",target: "maven"},
+{source: "express",target: "mongodb"},
+{source: "node.js",target: "mongodb"},
+{source: "reactjs",target: "mongodb"},
+{source: "postgresql",target: "mongodb"},
+{source: "mysql",target: "mongodb"},
+{source: "redis",target: "mongodb"},
+{source: "asp.net",target: "mvc"},
+{source: "css",target: "mysql"},
+{source: "jquery",target: "mysql"},
+{source: "mongodb",target: "mysql"},
+{source: "laravel",target: "mysql"},
+{source: "php",target: "mysql"},
+{source: "postgresql",target: "mysql"},
+{source: "javascript",target: "mysql"},
+{source: "html",target: "mysql"},
+{source: "ajax",target: "mysql"},
+{source: "apache",target: "mysql"},
+{source: "codeigniter",target: "mysql"},
+{source: "linux",target: "nginx"},
+{source: "redis",target: "nginx"},
+{source: "apache",target: "nginx"},
+{source: "javascript",target: "node.js"},
+{source: "reactjs",target: "node.js"},
+{source: "express",target: "node.js"},
+{source: "mongodb",target: "node.js"},
+{source: "redux",target: "node.js"},
+{source: "windows",target: "osx"},
+{source: "linux",target: "osx"},
+{source: "css",target: "photoshop"},
+{source: "css",target: "php"},
+{source: "laravel",target: "php"},
+{source: "wordpress",target: "php"},
+{source: "jquery",target: "php"},
+{source: "javascript",target: "php"},
+{source: "ajax",target: "php"},
+{source: "html",target: "php"},
+{source: "mysql",target: "php"},
+{source: "html5",target: "php"},
+{source: "codeigniter",target: "php"},
+{source: "mysql",target: "postgresql"},
+{source: "redis",target: "postgresql"},
+{source: "mongodb",target: "postgresql"},
+{source: "django",target: "postgresql"},
+{source: "flask",target: "python"},
+{source: "c++",target: "python"},
+{source: "django",target: "python"},
+{source: "c",target: "python"},
+{source: "linux",target: "python"},
+{source: "node.js",target: "reactjs"},
+{source: "redux",target: "reactjs"},
+{source: "mongodb",target: "reactjs"},
+{source: "express",target: "reactjs"},
+{source: "javascript",target: "reactjs"},
+{source: "mongodb",target: "redis"},
+{source: "nginx",target: "redis"},
+{source: "postgresql",target: "redis"},
+{source: "reactjs",target: "redux"},
+{source: "node.js",target: "redux"},
+{source: "express",target: "redux"},
+{source: "linux",target: "shell"},
+{source: "spring-mvc",target: "spring"},
+{source: "spring-boot",target: "spring"},
+{source: "maven",target: "spring"},
+{source: "java-ee",target: "spring"},
+{source: "hibernate",target: "spring"},
+{source: "jsp",target: "spring"},
+{source: "java",target: "spring"},
+{source: "spring",target: "spring-boot"},
+{source: "hibernate",target: "spring-boot"},
+{source: "spring-mvc",target: "spring-boot"},
+{source: "maven",target: "spring-mvc"},
+{source: "java-ee",target: "spring-mvc"},
+{source: "spring",target: "spring-mvc"},
+{source: "jsp",target: "spring-mvc"},
+{source: "spring-boot",target: "spring-mvc"},
+{source: "hibernate",target: "spring-mvc"},
+{source: "java",target: "spring-mvc"},
+{source: "sql-server",target: "sql"},
+{source: "c#",target: "sql"},
+{source: "asp.net",target: "sql"},
+{source: "vb.net",target: "sql-server"},
+{source: ".net",target: "sql-server"},
+{source: "asp.net",target: "sql-server"},
+{source: "linq",target: "sql-server"},
+{source: "sql",target: "sql-server"},
+{source: "c#",target: "sql-server"},
+{source: "linux",target: "ubuntu"},
+{source: "linux",target: "unix"},
+{source: "asp.net",target: "vb.net"},
+{source: "sql-server",target: "vb.net"},
+{source: "c#",target: "vb.net"},
+{source: "linux",target: "windows"},
+{source: "osx",target: "windows"},
+{source: "php",target: "wordpress"},
+{source: "html5",target: "wordpress"},
+{source: "css",target: "wordpress"},
+{source: "codeigniter",target: "wordpress"},
+{source: "jquery",target: "wordpress"},
+{source: "json",target: "xml"}
+];
+
+var nodes = {};
+
+// Compute the distinct nodes from the links.
+links.forEach(function(link) {
+  link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+  link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+});
+
+var width = 950,
+    height = 750;
+
+var force = d3.layout.force()
+    .nodes(d3.values(nodes))
+    .links(links)
+    .size([width, height])
+    .linkDistance(60)
+    .charge(-300)
+    .on("tick", tick)
+    .start();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var link = svg.selectAll(".link")
+    .data(force.links())
+  .enter().append("line")
+    .attr("class", "link");
+
+var node = svg.selectAll(".node")
+    .data(force.nodes())
+  .enter().append("g")
+    .attr("class", "node")
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout)
+    .call(force.drag);
+
+node.append("circle")
+    .attr("r", 8);
+
+node.append("text")
+    .attr("x", 12)
+    .attr("dy", ".35em")
+    .text(function(d) { return d.name; });
+
+function tick() {
+  link
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+
+  node
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+}
+
+function mouseover() {
+  d3.select(this).select("circle").transition()
+      .duration(750)
+      .attr("r", 16);
+}
+
+function mouseout() {
+  d3.select(this).select("circle").transition()
+      .duration(750)
+      .attr("r", 8);
+}
+
+</script>
