@@ -1,10 +1,14 @@
 # Network-Tags-Stack-Overflow
 
-Los datos a estudiar corresponden a todos los tags que se han escrito en la página Stack Overflow (https://www.kaggle.com/stackoverflow/stack-overflow-tag-network/data). En la presente gráfica se intenta mostrar las relaciones que existen entre los tags para identificar tecnologías conectadas y cuales son usadas juntas.
+En el mundo de Stack Overflow se desarrollan variadas temáticas relacionadas con tecnologías, programación, sistemas operativos, entre muchos otros. Por facilidad de la página y del usuario final, Stack Overflow desarrolló un sistemas de Tags (etiquetas) con el objetivo de filtrar y agrupar preguntas similares más fácilmente. Ejemplo de estas etiquetas son: php, javascript, java, android, c#, html, jquery y mysql, como para citar las seis más populares.
+
+Los datos a estudiar corresponden a todos los tags que se han escrito en la página Stack Overflow, la misma se encuentr en el link https://www.kaggle.com/stackoverflow/stack-overflow-tag-network/data. La data consiste en dos datasets, con información de los nodos (tags) y los links que existen entre ellos. 
+
+El objetivo de la presente gráfica se intenta mostrar cual es la relación que existen entre los tags para identificar tecnologías conectadas y cuales son usadas juntas.
 
 <Embed src = "grafica1.html" width = "950" height = "750">
 
-# FORCE DIRECTED GRAPH
-
+## Identificando clusters de tecnología 
 
   <Embed src = "grafica2.html" width = "950" height = "950">
+
