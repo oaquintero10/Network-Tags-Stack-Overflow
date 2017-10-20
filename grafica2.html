@@ -3,19 +3,19 @@
 <style>
 
 .link {
-  fill: none;
+  fill: red;
   stroke: #666;
-  stroke-width: 1.5px;
+  stroke-width: 2px;
 }
 
 .node circle {
-  fill: #ccc;
+  fill: steelblue;
   stroke: #fff;
-  stroke-width: 1.5px;
+  stroke-width: 0.5px;
 }
 
 text {
-  font: 10px sans-serif;
+  font: 15px sans-serif;
   pointer-events: none;
 }
 
@@ -299,7 +299,7 @@ var force = d3.layout.force()
     .nodes(d3.values(nodes))
     .links(links)
     .size([width, height])
-    .linkDistance(60)
+    .linkDistance(100)
     .charge(-300)
     .on("tick", tick)
     .start();
@@ -310,19 +310,19 @@ var svg = d3.select("body").append("svg")
 
 var link = svg.selectAll(".link")
     .data(force.links())
-  .enter().append("line")
+    .enter().append("line")
     .attr("class", "link");
 
 var node = svg.selectAll(".node")
     .data(force.nodes())
-  .enter().append("g")
+    .enter().append("g")
     .attr("class", "node")
     .on("mouseover", mouseover)
     .on("mouseout", mouseout)
     .call(force.drag);
 
 node.append("circle")
-    .attr("r", 8);
+    .attr("r", 20);
 
 node.append("text")
     .attr("x", 12)
@@ -343,13 +343,13 @@ function tick() {
 function mouseover() {
   d3.select(this).select("circle").transition()
       .duration(750)
-      .attr("r", 16);
+      .attr("r", 25);
 }
 
 function mouseout() {
   d3.select(this).select("circle").transition()
       .duration(750)
-      .attr("r", 8);
+      .attr("r", 15);
 }
 
 </script>
