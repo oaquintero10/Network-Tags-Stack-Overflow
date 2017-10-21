@@ -10,6 +10,6 @@ El objetivo de la presente gráfica es mostrar cual es la **relación** existent
 
 ## **Identificando clusters de tecnología** 
 
-<Embed src = "grafica2.html" width = "950" height = "750">
+<Embed src = "grafica2.html" width = "950" height = "850">
 
 Se pueden identificar fácilmente cluster o grupos de tecnologías que son usadas en conjunto o que tienen alta relación entre ellas. Ejemplo de esto es el cluster donde se encuentra CSS(Cascading Style Sheets), el mismo se relaciona con javacrip, html5, html, photshop, entre otros. Por lo cual se puede deducir que estos temas están estrechamente relacionados.
